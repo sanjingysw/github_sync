@@ -1,7 +1,7 @@
 for num in [1, 2, 3]:
     print(num)
 
-    if num == 2:
+    if num == 0:
         print("条件满足，循环中断")
         break
 else:
