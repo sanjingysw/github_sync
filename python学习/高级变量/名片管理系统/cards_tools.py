@@ -53,6 +53,9 @@ def show_all():
             )
 
 def search_card():
+    """搜索名片
+    
+    """
     # 搜索名片
     print("-" * 100)
     print("搜索名片")
@@ -67,20 +70,22 @@ def search_card():
                                             card_dict["qq"],
                                             card_dict["mail"]))
             deal_card(card_dict)
-
             break
         # 2.遍历名片列表查询，如果没找到需要提示用户
     else:
         print("没找到%s的名片" % find_name)
 
 def deal_card(find_dict):
+    """处理查找到的名片
+    find_dict：参数为查找到的名片
+    """
 
     action_str = input("请选择你要执行的操作：1 修改 2 删除 0 返回上级菜单：")
     if action_str == "1":
-        find_dict["name"] = input("姓名：[回车不修改]")
-        find_dict["phone"] = input("电话：[回车不修改]")
-        find_dict["qq"] = input("QQ：[回车不修改]")
-        find_dict["mail"] = input("邮箱：[回车不修改]") 
+        find_dict["name"] = input_card_info(find_dict["name"], "姓名：[回车不修改]:")
+        find_dict["phone"] = input_card_info(find_dict["phone"], "电话：[回车不修改]:")
+        find_dict["qq"] = input_card_info(find_dict["phone"], "QQ：[回车不修改]:")
+        find_dict["mail"] = input_card_info(find_dict["phone"], "邮箱：[回车不修改]:") 
         print("修改成功")
 
     elif action_str == "2":
@@ -88,4 +93,17 @@ def deal_card(find_dict):
         print("已经删除名片")
 
 
-
+def input_card_info(dict_value, tip_message):
+    """改进输入名片信息
+    dict_value：字典中原有的值
+    tip_message：输入的意识文字
+    return：如果用户输入内容则然后内容 否则返回原有的值
+    """
+    # 1.提示用户输入内容
+    result_str = input(tip_message)
+    # 2.如果用户输入内容，直接返回结果
+    if len(result_str) > 0:
+        return result_str
+    # 3.如果用户没输入，返回字典中原有的值
+    else:
+        return dict_value
