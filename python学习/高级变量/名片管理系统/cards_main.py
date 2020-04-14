@@ -16,17 +16,15 @@
 4.用户新建名片时，需要记录用户的 姓名、电话、 QQ、邮件
 5.如果查询到指定的名片，用户可以选择 修改 或者 删除 名片
 '''
-# 欢迎界面
-print("*" * 50)
-print("欢迎使用【名片管理系统】V1.0" "\n""\n""1.新建名片""\n""2.显示全部""\n""3.查询名片""\n""\n""0.退出系统")
-print("*" * 50)
-
-
+# 导入工具模块
+import cards_tools
 # 在开发软件时，如果 不希望程序执行后 立即退出
 # 可以在程序中增加一个 无限循环
 # 由用户来决定 退出程序的时
 # while True 语句中一定要有结束该循环的break语句 否则循环不会结束
 while True:
+    # 欢迎信息函数模块
+    cards_tools.show_menu()
     # 避免使用int，否则会因为用户输入的不是数字而报错
     action_str = input("请选择需要执行的操作：")
     print("您选择的操作是：【%s】" % action_str)
@@ -36,13 +34,16 @@ while True:
         # pass不会执行任何操作
         # 新增名片
         if action_str == "1":
-            pass
+            cards_tools.new_card()
+
         # 显示全部
         elif action_str == "2":
-            pass
+            cards_tools.show_all()
+
         # 查询名片
         elif action_str == "3":
-            pass
+            cards_tools.search_card()
+
     # 如果输入的是0 退出系统
     elif action_str == "0":
         print("退出系统 欢迎再次使用【名片管理系统】")
